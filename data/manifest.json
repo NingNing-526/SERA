@@ -1,0 +1,29 @@
+{
+  "status": "REFERENCE_ONLY",
+  "files": [
+    {
+      "file": "data/mosi/gemma_semantic_tokens_v11_len256.pt",
+      "bytes": 8648572306,
+      "sha256": "edbad39e5c90330d91424e7cd6bd7b53ff2adca187272efc778be47062100c57"
+    },
+    {
+      "file": "data/mosei/gemma_semantic_tokens_v11_len256.pt",
+      "bytes": 89891551958,
+      "sha256": "74cb41da1530f8768c28ea8dad3211efdb115549bc8aca6313142b607c885c3b"
+    },
+    {
+      "file": "data/mosi/mosi_gemma_raw_v11.json",
+      "bytes": 4875761,
+      "sha256": "39231174e864ff6d7517ca8456a7c4522ee521fa66af91fcc43d66f961495ce9"
+    }
+  ],
+  "missing": [
+    "MOSEI original description JSON"
+  ],
+  "excluded": [
+    "raw multimodal features",
+    "BERT and Gemma weights",
+    "trained checkpoints"
+  ],
+  "note": "Historical reference checksums; data files are not distributed in this repository."
+}

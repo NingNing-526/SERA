@@ -1,0 +1,33 @@
+# Python and local environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+# Data: publish documentation and reference checksums only
+/data/*
+!/data/README.md
+!/data/manifest.json
+/models/
+/runs/
+/checkpoints/
+*.ckpt
+*.pt
+*.pth
+*.pkl
+*.safetensors
+*.part
+# Credentials, local paths and editor state
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+/configs/local*.json
+.vscode/
+.idea/
+*.log
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
