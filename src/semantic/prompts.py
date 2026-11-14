@@ -1,29 +1,31 @@
-"""Original v11 prompt text and generation defaults, byte-for-byte values."""
+"""Modality-specific prompt templates and generation defaults."""
 
 import os
 
-PROMPT_VERSION = 'reference_single_pass_rule_clean_v11'
+PROMPT_VERSION = 'reference_single_pass_rule_clean_v12'
 
 MODALITY_PROMPT_VERSIONS = {
-    'text': 'text_summary_single_pass_v10',
+    'text': 'text_semantic_summary_single_pass_v11',
     'audio': 'audio_acoustic_evidence_single_pass_v11',
     'vision': 'video_explanation_single_pass_v10',
 }
 
 TEXT_RAW_SYSTEM = (
-    'You are an expert in sentiment analysis. The first user-assistant pair below '
-    'is an EXAMPLE of the task. The second user message contains the ACTUAL text '
-    "to analyze. For the actual text, output exactly one sentence in the format "
-    "'Summary: <your analysis>'. Do NOT include any extra text or explanation."
-)
-
-TEXT_RAW_EXAMPLE_USER = (
-    'Text: but to any of you who are i expect a thumbs up.'
-)
-
-TEXT_RAW_EXAMPLE_ASSISTANT = (
-    'Summary: The statement expresses confidence in a shared understanding or '
-    'experience.'
+    'Role and task: You are an expert in text semantic analysis. Based solely '
+    'on the supplied text, generate one concise, objective semantic description.\n\n'
+    'Task requirements:\n'
+    '1. Summarize what the text is about and its main content.\n'
+    '2. Preserve evaluative words, negation, degree modifiers, conditions, '
+    'contrasts, or questions in the original text that are relevant to judging '
+    'attitude; do not add cues that are absent from the text.\n'
+    '3. Distinguish what the text explicitly states from speculation. Do not '
+    "make unsupported judgments about sarcasm, implicit intent, or the speaker's "
+    'psychological state, and do not directly assign sentiment categories such '
+    'as positive, negative, or neutral.\n\n'
+    'Output requirements: Output one sentence in English, strictly in the '
+    'format "Summary: <concise description of the text>". Do not add facts '
+    'beyond the original text. Do not output sentiment scores, your analysis '
+    'process, or any other explanation.'
 )
 
 TONE_LABELS = (

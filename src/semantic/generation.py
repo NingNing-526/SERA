@@ -1,12 +1,10 @@
-"""Media preparation, model calls and retry loop; generation policy unchanged."""
+"""Media preparation, template-based model calls and retry loop."""
 
 import torch
 from semantic.prompts import (
     PROMPT_VERSION,
     MODALITY_PROMPT_VERSIONS,
     TEXT_RAW_SYSTEM,
-    TEXT_RAW_EXAMPLE_USER,
-    TEXT_RAW_EXAMPLE_ASSISTANT,
     TONE_LABELS,
     TONE_ALIASES,
     RAW_PROMPTS,
@@ -37,7 +35,6 @@ def generate_single_pass_description(
             attempt_prompt,
             media_path,
             args,
-            text_raw_few_shot=(modality == 'text'),
             generation_profile=f'raw_{modality}',
         )
         normalized = clean_model_response(last_value)
@@ -72,19 +69,14 @@ def generate(
     prompt,
     media_path,
     args,
-    text_raw_few_shot=False,
     generation_profile=None,
 ):
-    if text_raw_few_shot:
-        if modality != 'text':
-            raise ValueError('text_raw_few_shot is only valid for text input')
+    if modality == 'text':
         return generate_from_messages(
             model,
             processor,
             [
                 {'role': 'system', 'content': TEXT_RAW_SYSTEM},
-                {'role': 'user', 'content': TEXT_RAW_EXAMPLE_USER},
-                {'role': 'assistant', 'content': TEXT_RAW_EXAMPLE_ASSISTANT},
                 {'role': 'user', 'content': prompt},
             ],
             modality,

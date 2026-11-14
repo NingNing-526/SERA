@@ -5,8 +5,6 @@ from semantic.prompts import (
     PROMPT_VERSION,
     MODALITY_PROMPT_VERSIONS,
     TEXT_RAW_SYSTEM,
-    TEXT_RAW_EXAMPLE_USER,
-    TEXT_RAW_EXAMPLE_ASSISTANT,
     TONE_LABELS,
     TONE_ALIASES,
     RAW_PROMPTS,
@@ -78,8 +76,8 @@ def validate_and_normalize_description(value, modality, source_text=None):
             summary = first_sentence.group(1).strip()
         if not summary or len(summary.split()) > 80:
             return None
-        # The reference text script asks for one Summary sentence.  Do not
-        # remove emotion/polarity words: they are the intended semantic clue.
+        # Keep the requested Summary format and preserve evaluative words
+        # that may occur in the source; grounding is specified by the prompt.
         return f'Summary: {summary}'
 
     if modality == 'audio':
